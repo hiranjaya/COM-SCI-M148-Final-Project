@@ -31,7 +31,7 @@ for col in revised_df.columns:
 print(revised_df.shape)
 
 
-def clean(dataframe):
+def clean(df):
     revised_df = df.drop(columns='Unnamed: 0').drop_duplicates(subset=['track_id'])
     
     revised_df.drop(columns=['track_id', 'artists', 'album_name', 'track_name'], inplace=True)
