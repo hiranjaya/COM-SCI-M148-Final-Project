@@ -3,10 +3,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 from sklearn.preprocessing import LabelEncoder, StandardScaler
-from data_cleaning.py import clean(df) 
-
-df = pd.read_csv("hf://datasets/maharshipandya/spotify-tracks-dataset/dataset.csv")
-revised_df = clean(df)
+from data_cleaning import clean
 
 # Look at linear correlations between features
 def plot_corr_matrix(df):
@@ -16,7 +13,7 @@ def plot_corr_matrix(df):
   plt.show()
 
 # Plot some scatterplots of features with higher correlation
-def plot_scatter(df)
+def plot_scatter(df):
   sample = df.sample(n=1000, random_state=42)
 
   fig,ax = plt.subplots(2,2,figsize=(10,10))
@@ -39,11 +36,19 @@ def plot_scatter(df)
   plt.show()
 
 # Plot a boxplot to look at popularity by the key of the song
-def plot_box_plot(df)
+def plot_box_plot(df):
   df.boxplot(column='popularity', by='key', grid=False)
   plt.xlabel('Key')
   plt.ylabel('Popularity')
 
-plot_corr_matrix(revised_df)
-plot_scatter(df)
-plot_box_plot(df)
+
+def main():
+  df = pd.read_csv("hf://datasets/maharshipandya/spotify-tracks-dataset/dataset.csv")
+  revised_df = clean(df)
+  plot_corr_matrix(revised_df)
+  plot_scatter(df)
+  plot_box_plot(df)
+
+if __name__ == '__main__':
+  main()
+  print("Completed")
