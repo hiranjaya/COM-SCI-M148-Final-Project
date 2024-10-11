@@ -30,11 +30,17 @@ for col in revised_df.columns:
     print(col, ": ", revised_df[col].nunique(), "; Type: ", revised_df[col].dtypes)
 print(revised_df.shape)
 
-revised_df.drop(columns=['track_id', 'artists', 'album_name', 'track_name'], inplace=True)
-columns = revised_df.columns
-le = LabelEncoder()
-revised_df['track_genre'] = le.fit_transform(revised_df['track_genre']) # Numerically encode 'track_genre'
 
-scaler = StandardScaler()
-revised_df = scaler.fit_transform(revised_df) # Standardize the scale of all features
-revised_df = pd.DataFrame(revised_df, columns=columns)
+def clean(dataframe):
+    revised_df = df.drop(columns='Unnamed: 0').drop_duplicates(subset=['track_id'])
+    
+    revised_df.drop(columns=['track_id', 'artists', 'album_name', 'track_name'], inplace=True)
+    columns = revised_df.columns
+    le = LabelEncoder()
+    revised_df['track_genre'] = le.fit_transform(revised_df['track_genre']) # Numerically encode 'track_genre'
+
+    scaler = StandardScaler()
+    revised_df = scaler.fit_transform(revised_df) # Standardize the scale of all features
+    revised_df = pd.DataFrame(revised_df, columns=columns)
+
+    return revised_df
