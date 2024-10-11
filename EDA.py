@@ -39,8 +39,11 @@ def plot_scatter(df)
   plt.show()
 
 # Plot a boxplot to look at popularity by the key of the song
-def create_box_plot(df)
+def plot_box_plot(df)
   df.boxplot(column='popularity', by='key', grid=False)
   plt.xlabel('Key')
   plt.ylabel('Popularity')
 
+plot_corr_matrix(revised_df)
+plot_scatter(df)
+plot_box_plot(df)
