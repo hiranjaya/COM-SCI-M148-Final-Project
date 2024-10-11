@@ -4,6 +4,8 @@ import pandas as pd
 import seaborn as sns
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 
+df = pd.read_csv("hf://datasets/maharshipandya/spotify-tracks-dataset/dataset.csv")
+
 print(df.columns)
 print("*************************************")
 print(df.head(10))
